@@ -5,13 +5,13 @@ public class Produto {
   private String nome;
   private BigDecimal preco;
   public Produto(String name, String price) {
-      this.nome = name;
-      this.preco = new BigDecimal(price);
+    this.nome = name;
+    this.preco = new BigDecimal(price);
   }
   public BigDecimal getPrice() {
-      return preco;
+    return preco;
   }
   public String getName() {
-      return nome;
+    return nome;
   }
 }
