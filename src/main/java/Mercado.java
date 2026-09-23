@@ -18,14 +18,13 @@ public class Mercado {
         throw new IllegalArgumentException("Já existe");
       }
     }
-    cliente = new Cliente(name, status);
+    Cliente cliente = new Cliente(name, status);
     clientes.add(cliente);
   }
   public boolean changeUserStatus(String name) {
     for (Cliente client : clientes) {
       if (name.equals(client.getName())) {
-        client.changeStatus();
-        break;
+        return client.changeStatus();
       }
     }
     throw new IllegalArgumentException("Não existe");
@@ -36,7 +35,7 @@ public class Mercado {
         throw new IllegalArgumentException("Já existe");
       }
     }
-    produto = new Produto(name, price);
+    Produto produto = new Produto(name, price);
     produtos.add(produto);
   }
 }
