@@ -11,5 +11,7 @@ public class Pessoa {
     this.papeis = new ArrayList<>();
     papeis.add(role);
   }
-  
+  public void Lider() {
+    
+  }
 }
