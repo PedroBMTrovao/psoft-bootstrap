@@ -63,7 +63,7 @@ public class Time {
     } else { 
       this.lider = this.devs.get(0); 
     }
-    this.Lider.lider(tasks);
+    this.lider.Lider(tasks);
   }
   public Pessoa promote() {
     if (this.gerente == null) {
@@ -76,5 +76,28 @@ public class Time {
       this.gerente = null; 
     }
     return old;
+  }
+  public Pessoa promoteManager(String cpf) {
+    for (Pessoa dev : devs) {
+      if (dev.getCPF().equals(cpf)) {
+        String tasks = dev.getTasks();
+        boolean wasLeader = dev.equals(lider);
+        if (wasLeader) {
+          int i = devs.indexOf(dev);
+          if (devs.size() > 1) {
+            int next = (i == devs.size() - 1) ? 0 : i + 1;
+            lider = devs.get(next);
+            lider.Lider(tasks);
+          } else {
+            lider = null;
+          }
+        }
+        dev.promotion(tasks);
+        devs.remove(dev);
+        gerente = dev;
+        return dev;
+      }
+    }
+    throw new IllegalArgumentException("Não existe");
   }
 }
