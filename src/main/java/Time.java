@@ -19,20 +19,20 @@ public class Time {
       this.gerente = manager;
       return;
     }
-    String[] tasklist = this.manager.getTasks().split(", ");
-    if (tasklist.length > 1 || tasklist[0] != "") {
+    String[] tasklist = this.gerente.getTasks().split(", ");
+    if (tasklist.length > 1 || !tasklist[0].equals("")) {
       for (String task : tasklist) {
         manager.addTask(task);
       }
     }
-    this.manager.removeRole(false);
-    this.manager = manager;
+    this.gerente.removeRole(false);
+    this.gerente = manager;
     if (promotion) {
       if (this.lider != null && this.lider.equals(manager)) {
         int i = this.devs.indexOf(manager);
         if (this.devs.size() > 1) {
           int next = (i == this.devs.size() - 1) ? 0 : i + 1;
-          this.lider = this.devs.get(next)
+          this.lider = this.devs.get(next);
         } else {
           this.lider = null;
         }
@@ -63,5 +63,18 @@ public class Time {
       this.lider = this.devs.get(0); 
     }
     this.lider.lider(tasks);
+  }
+  public Pessoa promote() {
+    if (this.gerente == null) {
+      throw new IllegalArgumentException("Não existe");
+    }
+    Pessoa old = this.gerente;
+    if (this.lider != null) {
+      this.changeManager(this.lider, true);
+    } else {
+      old.removeRole(false)
+      this.gerente = null; 
+    }
+    return old;
   }
 }
