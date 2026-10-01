@@ -48,7 +48,7 @@ public class Pessoa {
     if (lider && papeis.size() > 1) {
       papeis.remove(1); 
     } else if (lider) {
-      throw new IllegalArgumentException("Tarefa inválida");
+      throw new IllegalArgumentException("Não lider");
     } else {
       this.papeis = new ArrayList<>();
     }
@@ -58,5 +58,14 @@ public class Pessoa {
       return papeis.get(1).getTasks(); 
     }
     return papeis.get(0).getTasks()
+  }
+  public void addTask(String task, boolean lider) {
+    if (lider && papeis.size() > 1) {
+      papeis.get(1).addTask(task); 
+    } else if (lider) {
+      throw new IllegalArgumentException("Não lider");
+    } else {
+      papeis.get(0).addTask(task);
+    }
   }
 }
