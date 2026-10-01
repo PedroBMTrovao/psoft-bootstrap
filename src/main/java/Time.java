@@ -38,7 +38,7 @@ public class Time {
   }
   public void addDev(Pessoa dev) {
     if (this.devs.isEmpty()) {
-      dev
+      dev.lider("");
       this.lider = dev;
     }
     this.devs.add(dev);
@@ -50,6 +50,7 @@ public class Time {
     if (this.devs.size() == 1) { 
       return; 
     }
+    String tasks = this.lider.getTasks();
     int i = this.devs.indexOf(this.lider);
     if (i != -1) {
       int next = (i == this.devs.size() - 1) ? 0 : i + 1;
@@ -57,4 +58,6 @@ public class Time {
     } else { 
       this.lider = this.devs.get(0); 
     }
+    this.lider.lider(tasks);
+  }
 }
