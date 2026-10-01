@@ -19,10 +19,11 @@ public class Time {
       this.gerente = manager;
       return;
     }
-    String[] tasklist = this.gerente.getTasks().split(", ");
-    if (tasklist.length > 1 || !tasklist[0].equals("")) {
+    String tasks = this.gerente.getTasks();
+    if (tasks != null && !tasks.isEmpty()) {
+      String[] tasklist = tasks.split(", ");
       for (String task : tasklist) {
-        manager.addTask(task);
+        manager.addTask(task, false);
       }
     }
     this.gerente.removeRole(false);
@@ -42,7 +43,7 @@ public class Time {
   }
   public void addDev(Pessoa dev) {
     if (this.devs.isEmpty()) {
-      dev.lider("");
+      dev.Lider("");
       this.lider = dev;
     }
     this.devs.add(dev);
@@ -62,7 +63,7 @@ public class Time {
     } else { 
       this.lider = this.devs.get(0); 
     }
-    this.lider.lider(tasks);
+    this.Lider.lider(tasks);
   }
   public Pessoa promote() {
     if (this.gerente == null) {
