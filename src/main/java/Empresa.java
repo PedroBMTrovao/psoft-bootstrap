@@ -79,4 +79,31 @@ public class Empresa {
     }
     throw new IllegalArgumentException("Não existe");
   }
+  public void promoteProdOwner(String teamprod) {
+    for (Time t : times) {
+      if (t.getTeamProd().equals(teamprod)) {
+        Pessoa promovida = t.promote();
+        String tasks = this.productOwner.getTasks();
+        if (tasks != null && !tasks.isEmpty()) {
+          String[] tasklist = tasks.split(", ");
+          for (String task : tasklist) {
+            promovida.addTask(task, false);
+          }
+        }
+        this.productOwner.removeRole(false);
+        this.productOwner = promovida;
+        return;
+      }
+    }
+    throw new IllegalArgumentException("Não existe");
+  }
+  public void promoteManager(String teamprod, String cpf) {
+    for (Time t : times) {
+      if (t.getTeamProd().equals(teamprod)) {
+        t.promoteManager(cpf);
+        return;
+      }
+    }
+    throw new IllegalArgumentException("Não existe");
+  }
 }
