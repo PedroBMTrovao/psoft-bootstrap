@@ -5,11 +5,20 @@ public class Pessoa {
   private String nome;
   private String cpf;
   private List<Papel> papeis;
-  public Pessoa(String name, String cpf, Papel role) {
+  public Pessoa(String name, String cpf, String role) {
     this.nome = name;
     this.cpf = cpf;
     this.papeis = new ArrayList<>();
-    papeis.add(role);
+    if (role.equals("Dev")) {
+      Papel work = new Dev();
+    } else if (role.equals("Man")) {
+      Papel work = new Gerente();
+    } else if (role.equals("PO")) {
+      Papel work = new ProductOwner();
+    } else {
+      throw new IllegalArgumentException("Inválido");
+    }
+    papeis.add(work);
   }
   public void Lider(String tasks) {
     if (papeis.get(0).getRole().equals("Dev")) {
