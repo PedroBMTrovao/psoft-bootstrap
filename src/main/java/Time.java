@@ -72,7 +72,6 @@ public class Time {
     if (this.lider != null) {
       this.changeManager(this.lider, true);
     } else {
-      old.removeRole(false)
       this.gerente = null; 
     }
     return old;
