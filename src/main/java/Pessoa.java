@@ -9,6 +9,7 @@ public class Pessoa {
     this.nome = name;
     this.cpf = cpf;
     this.papeis = new ArrayList<>();
+    Papel work;
     if (role.equals("Dev")) {
       Papel work = new Dev();
     } else if (role.equals("Man")) {
