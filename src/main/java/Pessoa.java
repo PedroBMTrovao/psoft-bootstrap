@@ -68,7 +68,7 @@ public class Pessoa {
     if (papeis.size() > 1) {
       return papeis.get(1).getTasks(); 
     }
-    return papeis.get(0).getTasks()
+    return papeis.get(0).getTasks();
   }
   public void addTask(String task, boolean lider) {
     if (lider && papeis.size() > 1) {
