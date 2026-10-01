@@ -15,8 +15,10 @@ public class Pessoa {
     if (papeis.get(0).getRole().equals("Dev")) {
       String[] tasklist = tasks.split(", ");
       Papel lider = new Lider();
-      for (String task : tasklist) {
-        lider.addTask(task);
+      if (tasklist.length > 1 || tasklist[0] != "") {
+        for (String task : tasklist) {
+          lider.addTask(task);
+        }
       }
       papeis.add(lider);
     }
