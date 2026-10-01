@@ -106,4 +106,9 @@ public class Empresa {
     }
     throw new IllegalArgumentException("Não existe");
   }
+  public void newSprint() {
+    for (Time t : times) {
+      t.newSprint();
+    }
+  }
 }
