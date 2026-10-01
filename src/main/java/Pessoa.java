@@ -23,9 +23,9 @@ public class Pessoa {
   }
   public void Lider(String tasks) {
     if (papeis.get(0).getRole().equals("Dev")) {
-      String[] tasklist = tasks.split(", ");
       Papel lider = new Lider();
-      if (tasklist.length > 1 || tasklist[0] != "") {
+      if (tasks != null && !tasks.trim().isEmpty()) {
+        String[] tasklist = tasks.split(", ");
         for (String task : tasklist) {
           lider.addTask(task);
         }
@@ -35,10 +35,15 @@ public class Pessoa {
   }
   public void promotion(String tasks) {
     if (papeis.get(0).getRole().equals("Dev")) {
-      String[] tasklist = tasks.split(", ");
       Papel manager = new Gerente();
-      for (String task : tasklist) {
-        manager.addTask(task);
+      if (tasks != null && !tasks.trim().isEmpty()) {
+        String[] tasklist = tasks.split(", ");
+        for (String task : tasklist) {
+          manager.addTask(task);
+        }  
+      }  
+      if (papeis.size() > 1) {
+        papeis.remove(1);
       }
       if (papeis.size() > 1) {
         papeis.remove(1);
