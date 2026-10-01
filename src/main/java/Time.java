@@ -15,6 +15,9 @@ public class Time {
     return teamproduct;
   }
   public void changeManager(Pessoa manager, boolean promotion) {
+    if (this.gerente == null) {
+      this.gerente = manager; 
+    }
     String[] tasklist = this.manager.getTasks().split(", ");
     if (tasklist.length > 1 || tasklist[0] != "") {
       for (String task : tasklist) {
