@@ -47,10 +47,11 @@ public class Empresa {
       }
     }
     Pessoa po = new Pessoa(nome, cpf, "PO");
-    String[] tasklist = this.productOwner.getTasks().split(", ");
-    if (tasklist.length > 1 || tasklist[0] != "") {
+    String tasks = this.productOwner.getTasks();
+    if (tasks != null && !tasks.isEmpty()) {
+      String[] tasklist = tasks.split(", ");
       for (String task : tasklist) {
-        po.addTask(task);
+        po.addTask(task, false);
       }
     }
     this.productOwner.removeRole(false);
