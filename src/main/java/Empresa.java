@@ -24,6 +24,8 @@ public class Empresa {
     }
     Pessoa manager = new Pessoa(nome, cpf, "Man");
     Time time = new Time(teamprod, manager);
+    times.add(time);
+    pessoas.add(manager);
   }
   public void addDev(String teamprod, String nome, String cpf) {
     for (Pessoa p : pessoas) {
@@ -34,6 +36,7 @@ public class Empresa {
     for (Time t : times) {
       if (t.getTeamProd().equals(teamprod)) {
         Pessoa dev = new Pessoa(nome, cpf, "Dev");
+        pessoas.add(dev);
         t.addDev(dev);
         return;
       }
@@ -47,6 +50,7 @@ public class Empresa {
       }
     }
     Pessoa po = new Pessoa(nome, cpf, "PO");
+    pessoas.add(po);
     String tasks = this.productOwner.getTasks();
     if (tasks != null && !tasks.isEmpty()) {
       String[] tasklist = tasks.split(", ");
@@ -66,6 +70,7 @@ public class Empresa {
     for (Time t : times) {
       if (t.getTeamProd().equals(teamprod)) {
         Pessoa man = new Pessoa(nome, cpf, "Man"); 
+        pessoas.add(man);
         String[] tasklist = this.productOwner.getTasks().split(", "); 
         if (tasklist.length > 1 || tasklist[0] != "") {
           for (String task : tasklist) {
@@ -110,5 +115,23 @@ public class Empresa {
     for (Time t : times) {
       t.newSprint();
     }
+  }
+  public void addTask(String cpf, String task) {
+    for (Pessoa p : pessoas) {
+      if (p.getCPF().equals(cpf)) {
+        p.addTask(task, false);
+        return;
+      }
+    }
+    throw new IllegalArgumentException("Não existe");
+  }
+  public void addTaskLider(String teamprod, String task) {
+    for (Time t : times) {
+      if (t.getTeamProd().equals(teamprod)) {
+        t.addTaskLider(task);
+        return;
+      }
+    }
+    throw new IllegalArgumentException("Não existe");
   }
 }
