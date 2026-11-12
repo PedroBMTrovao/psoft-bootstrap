@@ -25,12 +25,113 @@ public class Central {
     for (int i = 0; i < pedidos.size(); i++) {
       if (pedidos.get(i) == null) {
         Pedido pedido = new Pedido(i + 1, client, origem, dest, peso, dist);
-        pedidos.get(i) = pedido;
+        pedidos.set(i, pedido);
         return i + 1;
       }
     }
     Pedido pedido = new Pedido(pedidos.size() + 1, client, origem, dest, peso, dist);
     pedidos.add(pedido);
     return pedidos.size() + 1;
+  }
+  public int solicitarEntregaConv(int id) {
+    if (id > pedidos.size()) {
+      throw new IllegalArgumentException();
+    }
+    for (int i = 0; i < pedidos.size(); i++) {
+      if (pedidos.get(i) != null && pedidos.get(i).getID() == id) {
+        Modalidade mod = new Convencional();
+        Entrega ent = new Entrega(entregas.size() + 1, pedidos.get(i), mod);
+        pedidos.set(i, null);
+        return entregas.size();
+      }
+    }
+    throw new IllegalArgumentException();
+  }
+  public int solicitarEntregaExp(int id) {
+    if (id > pedidos.size()) {
+      throw new IllegalArgumentException();
+    }
+    for (int i = 0; i < pedidos.size(); i++) {
+      if (pedidos.get(i) != null && pedidos.get(i).getID() == id) {
+        Modalidade mod = new Expresso();
+        Entrega ent = new Entrega(entregas.size() + 1, pedidos.get(i), mod);
+        pedidos.set(i, null);
+        return entregas.size();
+      }
+    }
+    throw new IllegalArgumentException();
+  }
+  public int solicitarEntregaEco(int id) {
+    if (id > pedidos.size()) {
+      throw new IllegalArgumentException();
+    }
+    for (int i = 0; i < pedidos.size(); i++) {
+      if (pedidos.get(i) != null && pedidos.get(i).getID() == id) {
+        Modalidade mod = new Economico();
+        Entrega ent = new Entrega(entregas.size() + 1, pedidos.get(i), mod);
+        pedidos.set(i, null);
+        return entregas.size();
+      }
+    }
+    throw new IllegalArgumentException();
+  }
+  public void changeToConv(int id) {
+    if (id > entregas.size()) {
+      throw new IllegalArgumentException();
+    }
+    for (int i = 0; i < entregas.size(); i++) {
+      if (entregas.get(i).getID() == id) {
+        if (!entregas.get(i).getStatus().equals("SOLICITADO")) {
+          throw new IllegalArgumentException();
+        }
+        entregas.get(i).convSwitch();
+        return;
+      }
+    }
+    throw new IllegalArgumentException();
+  }
+  public void changeToExp(int id) {
+    if (id > entregas.size()) {
+      throw new IllegalArgumentException();
+    }
+    for (int i = 0; i < entregas.size(); i++) {
+      if (entregas.get(i).getID() == id) {
+        if (!entregas.get(i).getStatus().equals("SOLICITADO")) {
+          throw new IllegalArgumentException();
+        }
+        entregas.get(i).expSwitch();
+        return;
+      }
+    }
+    throw new IllegalArgumentException();
+  }
+  public void changeToEco(int id) {
+    if (id > entregas.size()) {
+      throw new IllegalArgumentException();
+    }
+    for (int i = 0; i < entregas.size(); i++) {
+      if (entregas.get(i).getID() == id) {
+        if (!entregas.get(i).getStatus().equals("SOLICITADO")) {
+          throw new IllegalArgumentException();
+        }
+        entregas.get(i).ecoSwitch();
+        return;
+      }
+    }
+    throw new IllegalArgumentException();
+  }
+  public String acompany(int id) {
+    if (id > entregas.size()) {
+      throw new IllegalArgumentException();
+    }
+    for (int i = 0; i < entregas.size(); i++) {
+      if (entregas.get(i).getID() == id) {
+        return entregas.get(i).acompany();
+      }
+    }
+    throw new IllegalArgumentException();
+  }
+  public void batch(int quant) {
+    
   }
 }
