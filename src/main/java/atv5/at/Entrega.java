@@ -53,4 +53,7 @@ public class Entrega {
     return "ENTREGA: " + id + "\nMODALIDADE DE ENTREGA: " + modalidade.check() + "\nTEMPO ESTIMADO: " + tempo +
       "\nPRECO: " + preco + "\nSTATUS: " + status;
   }
+  public int getID() {
+    return id;
+  }
 }
