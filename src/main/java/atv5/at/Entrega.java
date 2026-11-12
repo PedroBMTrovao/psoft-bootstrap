@@ -45,9 +45,7 @@ public class Entrega {
     return status;
   }
   public void change() {
-    if (status.equals("SOLICITADO")) {
-      this.status = "ENTREGANDO/ENTREGUE"
-    }
+    this.status = "ENTREGANDO/ENTREGUE"
   }
   public String acompany() {
     return "ENTREGA: " + id + "\nMODALIDADE DE ENTREGA: " + modalidade.check() + "\nTEMPO ESTIMADO: " + tempo +
