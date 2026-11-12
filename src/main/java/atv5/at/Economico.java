@@ -12,7 +12,8 @@ public class Economico implements Modalidade {
     double r = 15 + (dist * 1.2);
     return r;
   }
-  BigDecimal recalcularPreco(double dist, double peso) {
+  @Override
+  public BigDecimal recalcularPreco(double dist, double peso) {
     BigDecimal base = BigDecimal.valueOf(80);
     BigDecimal custoPeso = BigDecimal.valueOf(peso).multiply(BigDecimal.valueOf(4));
     BigDecimal custoDist = BigDecimal.valueOf(dist).multiply(BigDecimal.valueOf(2));
