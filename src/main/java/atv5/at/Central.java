@@ -132,6 +132,20 @@ public class Central {
     throw new IllegalArgumentException();
   }
   public void batch(int quant) {
-    
+    if (quant > entregas.size()) {
+      throw new IllegalArgumentException();
+    }
+    for (int i = 0; i < entregas.size(); i++) {
+      if (entregas.get(i).getStatus().equals("SOLICITADO")) {
+        if (quant > (entregas.size() - i)) {
+          throw new IllegalArgumentException();
+        }
+        for (int j = 0; j < quant; j++) {
+          entregas.get(i + j).change();
+        }
+        return;
+      }
+    }
+    throw new IllegalArgumentException();
   }
 }
