@@ -19,18 +19,18 @@ public class Empresa {
     return central.solicitarEntregaEco(id);
   }
   public void changeToConv(int id) {
-    return central.changeToConv(id);
+    central.changeToConv(id);
   }
   public void changeToExp(int id) {
-    return central.changeToExp(id);
+    central.changeToExp(id);
   }
   public void changeToEco(int id) {
-    return central.changeToEco(id);
+    central.changeToEco(id);
   }
   public String acompany(int id) {
     return central.acompany(id);
   }
   public void batch(int quant) {
-    return central.batch(quant);
+    central.batch(quant);
   }
 }
