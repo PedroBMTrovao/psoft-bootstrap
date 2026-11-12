@@ -12,7 +12,8 @@ public class Expresso implements Modalidade {
     double r = 6 + (dist * 0.4);
     return r;
   }
-  BigDecimal recalcularPreco(double dist, double peso) {
+  @Override
+  public BigDecimal recalcularPreco(double dist, double peso) {
     BigDecimal base = BigDecimal.valueOf(150);
     BigDecimal custoPeso = BigDecimal.valueOf(peso).multiply(BigDecimal.valueOf(5));
     BigDecimal custoDist = BigDecimal.valueOf(dist).multiply(BigDecimal.valueOf(6));
